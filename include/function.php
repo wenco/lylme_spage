@@ -88,7 +88,7 @@ $background = $conf["background"];
 //网站背景
 function background()
 {
-    return $GLOBALS['background_img'];
+    return isset($GLOBALS['background_img']) && file_exists($GLOBALS['background_img']) ? $GLOBALS['background_img'] : './assets/img/default-background.jpg';
 }
 
 
@@ -200,7 +200,7 @@ function rearr($data, $arr)
     $arr = str_replace('{group_id}', $data['group_id'], $arr);
     $alt = isset($data['name']) ? $data['name'] : $data['group_name'];
     if (empty($data["icon"])) {
-        $icon =  '<img src="/assets/img/default-icon.png" alt="' . strip_tags($alt) . '" />';
+        $icon =  '<img src="./assets/img/default-icon.png" alt="' . strip_tags($alt) . '" />';
     } elseif (!preg_match("/^<svg*/", $data["icon"])) {
         $icon = '<img src="' . $data["icon"] . '" alt="' . strip_tags($alt) . '" />';
     } else {

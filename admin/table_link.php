@@ -3,6 +3,8 @@ include_once("../include/common.php");
 if(isset($islogin)==1) {
 } else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 
+    $q = isset($_GET['q'])? $_GET['q'] : "";
+    $q = htmlspecialchars($q, ENT_QUOTES);
     $page = isset($_GET['page'])? $_GET['page'] : 1;
     $groups = $DB->query("SELECT * FROM `lylme_groups` ORDER BY `group_order` ASC"); //获取分组
     $gpwd = $DB->fetch($DB->query("SELECT `group_id`, `group_pwd` FROM `lylme_groups` WHERE `group_id` = ".$page))["group_pwd"]; //分组加密状态
@@ -21,7 +23,7 @@ while ($group = $DB->fetch($groups)) {
                 </nav>
         <!-- 功能按钮 S-->
           <div id="toolbar" class="toolbar-btn-action">
-            <a  href="./link.php?set=add"  class="btn btn-primary btn-label">
+            <a href="./link.php?set=add&page='.$page.'" class="btn btn-primary btn-label">
               <label><i class="mdi mdi-plus" aria-hidden="true"></i></label>新增</a>
             <button id="btn_edit" type="button" class="btn btn-success btn-label" onclick="on_link()">
               <label><i class="mdi mdi-check" aria-hidden="true"></i></label>启用</button>
@@ -43,6 +45,16 @@ while ($group = $DB->fetch($groups)) {
               echo '
             <button class="btn btn-label btn btn-purple" id="save_order" style="display:none" onclick="save_order()">
             <label><i class="mdi mdi-checkbox-marked-circle-outline"></i></label> 保存排序</button>
+            <form class="layui-layer-form" style="display: inline-block; position: relative; top: 16px; width:200px;">
+            <div class="input-group">
+              <input type="text" name="q" value="'.$q.'" placeholder="输入想找内容" class="form-control" required>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="mdi mdi-magnify"></i>
+                </button>
+              </span>
+            </div>
+            </form>
           </div> 
           <!-- 功能按钮 E -->
 		<div class="table-responsive">       
@@ -51,8 +63,14 @@ while ($group = $DB->fetch($groups)) {
           <th><input  type="checkbox" class="checkbox-parent" id="check_all" onclick="check_all()"></th>
           <th>排序</th><th>名称</th><th>链接</th><th>分组</th><th>启用</th><th>操作</th></tr></thead>
           <tbody id="link">';
-    
-    $rs = $DB->query("SELECT * FROM `lylme_links` WHERE `group_id` = ".$page." ORDER BY `lylme_links`.`link_order` ASC");
+    $sql = "SELECT * FROM `lylme_links` WHERE `group_id` = ".$page;
+    if(!empty($q)) {
+      $sql .= " and `name` like '%" . $DB->escape($q) . "%'";
+      $sql .= " or `link_desc` like '%" . $DB->escape($q) . "%'";
+      $sql .= " or `url` like '%" . $DB->escape($q) . "%'";
+    }
+    $sql .= " ORDER BY `lylme_links`.`link_order` ASC";
+    $rs = $DB->query($sql);
     while ($res = $DB->fetch($rs)) {
 
         echo '<tr><td><input type="checkbox" name="link-check" value="'.$res['id'].'"></td>
@@ -62,10 +80,10 @@ while ($group = $DB->fetch($groups)) {
 	<a class="btn btn-primary btn-xs sort-up" data-toggle="tooltip" data-placement="top" title="移到上一行"><i class="mdi mdi-arrow-up"></i></a>
 	<a class="btn btn-cyan btn-xs sort-down" data-toggle="tooltip" data-placement="top" title="移到下一行"><i class="mdi mdi-arrow-down"></i></a></td>
 	 <!-- 链接排序 E -->
-        <td class="lylme">' . $res['name'] . '</td><td>';
+        <td class="lylme">' . $res['name'] . '</td><td width="35%"><div style="word-break: break-all;">';
         if(!empty($res['link_pwd'])||!empty($gpwd)){ echo '<font color="#f96197">'. $res['url'] .'</font>';}else{echo $res['url'];}
         echo 
-        '</td><td>'. $DB->fetch($DB->query("SELECT * FROM `lylme_groups` WHERE `group_id` = " . $res['group_id'])) ["group_name"]. '</td>
+        '</div></td><td>'. $DB->fetch($DB->query("SELECT * FROM `lylme_groups` WHERE `group_id` = " . $res['group_id'])) ["group_name"]. '</td>
         <td>';
         if($res['link_status']=="0"){ echo '<font color="red">禁用</font>';}else{echo '<font color="green">启用</font>';}
         $de_llink = "del_link('".$res['id']."')";

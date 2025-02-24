@@ -173,9 +173,9 @@ else {
 }
 include './footer.php';
 ?>
-<script src="/assets/admin/js/layer.min.js" type="application/javascript"></script>
-<script type="text/javascript" src="/assets/admin/js/lightyear.js"></script>
-<script src="/assets/admin/js/bootstrap-notify.min.js"></script>
-<link href="/assets/admin/js/jquery-confirm.min.css" type="text/css" rel="stylesheet" />
-<script src="/assets/admin/js/jquery-confirm.min.js" type="application/javascript"></script>
-<script type="text/javascript" src="/assets/admin/js/group.js"></script>
+<script src="../assets/admin/js/layer.min.js" type="application/javascript"></script>
+<script type="text/javascript" src="../assets/admin/js/lightyear.js"></script>
+<script src="../assets/admin/js/bootstrap-notify.min.js"></script>
+<link href="../assets/admin/js/jquery-confirm.min.css" type="text/css" rel="stylesheet" />
+<script src="../assets/admin/js/jquery-confirm.min.js" type="application/javascript"></script>
+<script type="text/javascript" src="../assets/admin/js/group.js"></script>

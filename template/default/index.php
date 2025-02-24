@@ -111,13 +111,13 @@
 						while ($soulist = $DB->fetch($soulists)) {
 							if ($soulist["sou_st"] == 1) {
 								echo '	<li>
-								<input hidden=""  checked="" type="radio" name="type" id="type-' . $soulist["sou_alias"] . '" value="';
+								<input hidden="" checked="" type="radio" name="type" id="type-' . $soulist["sou_alias"] . '" value="';
 								if (checkmobile() && !empty($soulist["sou_waplink"])) {
 									echo $soulist["sou_waplink"];
 								} else {
 									echo $soulist["sou_link"];
 								}
-								echo '"data-placeholder="' . $soulist["sou_hint"] . '">
+								echo '" data-placeholder="' . $soulist["sou_hint"] . '">
 								<label for="type-' . $soulist["sou_alias"] . '" style="font-weight:600">
 								' . $soulist["sou_icon"] . '
 									<span style="color:' . $soulist["sou_color"] . '">
@@ -139,7 +139,7 @@
 						<use xlink:href="#icon-sousuo">
 						</use>
 					</svg>
-					<span>
+					<span></span>
 				</button>
 
 				<ul id="word" style="display: none;">

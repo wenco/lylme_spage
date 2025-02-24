@@ -15,7 +15,7 @@
         preg_match_all('/\d+/', theme_config('gonganbei'), $gab);
 
         echo '<a class="icp" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' . $gab[0][0] . '" target="_blank" rel="nofollow noopener">
-    <img src="/assets/img/icp.png" alt="公安网备" width="16" height="16">' . theme_config('gonganbei') . ' </a>';
+    <img src="'. $cdnpublic. '/assets/img/icp.png" alt="公安网备" width="16" height="16">' . theme_config('gonganbei') . ' </a>';
     }
     ?>
     <?php if ($conf['icp'] != null) {
@@ -29,4 +29,5 @@
     } ?>
 </div>
 
+</body>
 </html>

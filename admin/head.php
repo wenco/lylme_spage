@@ -12,11 +12,11 @@ if (isset($islogin) == 1) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title><?php echo $title . ' - ' . $conf['title']; ?></title>
-  <link rel="icon" href="/assets/img/logo.png" type="image/ico">
+  <link rel="icon" href="../assets/img/logo.png" type="image/ico">
   <meta name="author" content="yinqi">
-  <link href="/assets/admin/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/admin/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="/assets/admin/css/style.min.css" rel="stylesheet">
+  <link href="../assets/admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/admin/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="../assets/admin/css/style.min.css" rel="stylesheet">
 </head>
 <div class="lyear-layout-web">
   <div class="lyear-layout-container">
@@ -24,7 +24,7 @@ if (isset($islogin) == 1) {
     <aside class="lyear-layout-sidebar">
       <!-- logo -->
       <div id="logo" class="sidebar-header">
-        <a href="/"><img src="/assets/img/logo-sidebar.png" alt="LyLme" title="返回首页" /></a>
+        <a href="/"><img src="../assets/img/logo-sidebar.png" alt="Logo" title="返回首页" /></a>
       </div>
       <div class="lyear-layout-sidebar-scroll">
         <nav class="sidebar-main">
@@ -49,6 +49,7 @@ if (isset($islogin) == 1) {
             <li class="nav-item active"> <a href="./theme.php"><i class="mdi mdi-seal"></i>主题设置</a></li>
             <li class="nav-item active"> <a href="./group.php"><i class="mdi mdi-folder"></i>分组管理</a></li>
             <li class="nav-item active"> <a href="./link.php"><i class="mdi mdi-web"></i>链接管理</a></li>
+            <li class="nav-item active"> <a href="./bookmarks.php"><i class="mdi mdi-bookmark"></i>导入书签</a></li>
             <li class="nav-item active"> <a href="./tag.php"><i class="mdi mdi-cube"></i>导航菜单</a></li>
             <li class="nav-item active"> <a href="./sou.php"><i class="mdi mdi-magnify"></i>搜索引擎</a></li>
             <li class="nav-item active"> <a href="./pwd.php"><i class="mdi mdi-key-variant"></i>加密管理</a></li>

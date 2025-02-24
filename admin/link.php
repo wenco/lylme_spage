@@ -3,6 +3,7 @@ $title = '链接管理';
 include './head.php';
 $grouplists = $DB->query("SELECT * FROM `lylme_groups`");
 $pwd_lists = $DB->query("SELECT * FROM `lylme_pwd`");
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 ?>
 <main class="lyear-layout-content">
     <div class="container-fluid">
@@ -45,19 +46,19 @@ $pwd_lists = $DB->query("SELECT * FROM `lylme_pwd`");
                         <label>*分组:</label><br>
                         <select class="form-control" name="group_id">';
                             while ($grouplist = $DB->fetch($grouplists)) {
-                                if ($grouplist["group_id"] == $row['group_id']) {
-                                    $select = 'selected="selected"';
+                                if ($grouplist["group_id"] == $row['group_id'] || $grouplist["group_id"] == $page) {
+                                    $select = ' selected="selected"';
                                 } else {
                                     $select = '';
                                 }
-                                echo '<option  value="' . $grouplist["group_id"] . '">' . $grouplist["group_id"] . ' - ' . $grouplist["group_name"] . '</option>';
+                                echo '<option value="' . $grouplist["group_id"] . '"' . $select . '>' . $grouplist["group_id"] . ' - ' . $grouplist["group_name"] . '</option>';
                             }
                             echo '</select></div>
                         <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-block" value="添加">
                         </form>
                         </div>
-                        <br/><a href="./link.php"><<返回</a>
+                        <br/><a href="./link.php?page='.$page.'"><<返回</a>
                         </div></div>';
                             echo '<script>
                                 document.getElementById("addLinkForm").addEventListener("submit", function(event) {
@@ -111,7 +112,7 @@ $pwd_lists = $DB->query("SELECT * FROM `lylme_pwd`");
                         <select class="form-control" name="group_id">';
                             while ($grouplist = $DB->fetch($grouplists)) {
                                 if ($grouplist["group_id"] == $row['group_id']) {
-                                    $select = 'selected="selected"';
+                                    $select = ' selected';
                                 } else {
                                     $select = '';
                                 }
@@ -125,14 +126,14 @@ $pwd_lists = $DB->query("SELECT * FROM `lylme_pwd`");
                             $pwd_lists = $DB->query("SELECT * FROM `lylme_pwd`");
                             while ($pwd_list = $DB->fetch($pwd_lists)) {
                                 if ($row['link_pwd'] == $pwd_list["pwd_id"]) {
-                                    $sel = 'selected="selected"';
+                                    $sel = ' selected';
                                 } else {
                                     $sel = '';
                                 }
                                 echo '<option  value="' . $pwd_list["pwd_id"] . '" ' . $sel . ' >' . $pwd_list["pwd_id"] . ' - ' . $pwd_list["pwd_name"] . ' | 密码[' . $pwd_list["pwd_key"] . ']</option>';
                             }
                             if (empty($row['link_pwd'])) {
-                                $sele = 'selected="selected"';
+                                $sele = ' selected';
                             }
                             echo '
                         <option value="0" ' . $sele . '>0 - 不加密</option></select>
@@ -143,7 +144,7 @@ $pwd_lists = $DB->query("SELECT * FROM `lylme_pwd`");
                         <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-block" value="修改"></form>
                         </div>
-                        <br/><a href="./link.php"><<返回</a>
+                        <br/><a href="./link.php?page='.$row["group_id"].'"><<返回</a>
                         </div></div>
                         ';
                             echo '<script>
@@ -173,13 +174,13 @@ $pwd_lists = $DB->query("SELECT * FROM `lylme_pwd`");
                         }
                         include './footer.php';
                         ?>
-                        <script type="text/javascript" src="/assets/admin/js/jquery.dragsort-0.5.2.min.js"></script>
-                        <link href="/assets/admin/js/jquery-confirm.min.css" type="text/css" rel="stylesheet" />
-                        <script src="/assets/admin/js/layer.min.js" type="application/javascript"></script>
-                        <script src="/assets/admin/js/jquery-confirm.min.js" type="application/javascript"></script>
+                        <script src="../assets/admin/js/jquery.dragsort-0.5.2.min.js" type="text/javascript"></script>
+                        <link href="../assets/admin/js/jquery-confirm.min.css" type="text/css" rel="stylesheet" />
+                        <script src="../assets/admin/js/layer.min.js" type="application/javascript"></script>
+                        <script src="../assets/admin/js/jquery-confirm.min.js" type="application/javascript"></script>
                         <!--选色器-->
-                        <link rel="stylesheet" type="text/css" href="/assets/admin/css/coloris.min.css" />
-                        <script type="text/javascript" src="/assets/admin/js/coloris.min.js"></script>
+                        <link rel="stylesheet" type="text/css" href="../assets/admin/css/coloris.min.css" />
+                        <script type="text/javascript" src="../assets/admin/js/coloris.min.js"></script>
                         <script type="text/javascript">
                             Coloris({
                                 el: '.coloris',
@@ -201,9 +202,9 @@ $pwd_lists = $DB->query("SELECT * FROM `lylme_pwd`");
                         </script>
                         <!--选色器-->
                         <!--消息提示-->
-                        <script src="/assets/admin/js/bootstrap-notify.min.js"></script>
-                        <script type="text/javascript" src="/assets/admin/js/lightyear.js"></script>
-                        <script type="text/javascript" src="/assets/admin/js/link.js"></script>
+                        <script src="../assets/admin/js/bootstrap-notify.min.js"></script>
+                        <script type="text/javascript" src="../assets/admin/js/lightyear.js"></script>
+                        <script type="text/javascript" src="../assets/admin/js/link.js"></script>
                         <script type="text/javascript">
                             //分组移动
                             var mv_group = '<form action="" class="formName">' + '<select class="form-control group_id" required><option value="">请选择分组...</option>' + '<?php while ($grouplist = $DB->fetch($grouplists)) {

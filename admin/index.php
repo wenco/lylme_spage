@@ -178,7 +178,7 @@ if (!empty($update)) {
 include './footer.php';
 ?>
 <!--图表插件-->
-<script type="text/javascript" src="/assets/admin/js/Chart.js"></script>
+<script type="text/javascript" src="../assets/admin/js/Chart.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(e) {
 		var $dashChartBarsCnt = jQuery('.js-chartjs-bars')[0].getContext('2d'),

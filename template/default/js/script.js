@@ -145,7 +145,7 @@ function show() {
     var w = date.getDay();   //获取星期几  返回0-6   (0=星期天) 
     var ww = ' 星期'+'日一二三四五六'.charAt(new Date().getDay()) ;//星期几
 	var format = [
-		("0" + date.getHours()).substr(-2), ("0" + date.getMinutes()).substr(-2)
+		("0" + date.getHours()).substr(-2), ("0" + date.getMinutes()).substr(-2), ("0" + date.getSeconds()).substr(-2)
 	].join(":");
 	
     document.getElementById("show_date").innerHTML =  y+"年"+m+"月"+d+"日 "+ww; 

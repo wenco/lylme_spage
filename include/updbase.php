@@ -14,6 +14,7 @@ $filevn = get_vernum(constant("VERSION"));  // 文件版本
 if ($sqlvn < $filevn) {
     //文件版本大于数据库版本执行更新
     $sql = '';
+    $version = '';
     if ($sqlvn < 10101) {
         $version = 'v1.1.1';
         $sql = $sql . file_get_contents(ROOT . 'install/data/update.sql');
