@@ -1,13 +1,4 @@
 <?php
-/* 
- * @Description: 后台网站配置
- * @Author: LyLme admin@lylme.com
- * @Date: 2024-01-23 12:25:35
- * @LastEditors: LyLme admin@lylme.com
- * @LastEditTime: 2024-04-14 14:08:30
- * @FilePath: /lylme_spage/admin/bookmarks.php
- * @Copyright (c) 2024 by LyLme, All Rights Reserved. 
- */
 include_once("../include/common.php");
 
 error_reporting(E_ALL);
